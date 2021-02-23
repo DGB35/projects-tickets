@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.15
 import "imports" as ComponentsConstants
 import "components" as Components
 
-
 StackView
 {
     id: stackView

@@ -16,5 +16,6 @@
         <file>ApplicationFlow.qml</file>
         <file>components/Ticket.qml</file>
         <file>components/TextComponent.qml</file>
+        <file>components/Header.qml</file>
     </qresource>
 </RCC>

@@ -6,35 +6,17 @@ import QtQuick.Controls.Material 2.3
 import "../imports" as ComponentsConstants
 
 import com.dgb.authentificator 1.0
+import com.dgb.projectModel 1.0
 
 Panel
 {
-    ListModel
+    ProjectModel
     {
         id: projectsModel
-
     }
 
-    Connections {
-        target: Authentificator
-        function onProjectsDataRecieveSuccess() {
-            loadProjects(Authentificator.getProjectsData())
-        }
-    }
-
-    function loadProjects(data)
+    Component
     {
-        var result = JSON.parse(data)
-        for (var i in result["projects"]) {
-            projectsModel.append({
-                                     "icon" : result["projects"][i].icon,
-                                     "name" : result["projects"][i].name,
-                                     "id": result["projects"][i].id
-                                 });
-        }
-    }
-
-    Component {
         id: projectsDelegate
         Project
         {
@@ -44,17 +26,16 @@ Panel
                 focus: true
                 anchors.fill: parent
                 onClicked: {
-                    if(view.currentIndex != model.index)
+                    if(view.currentIndex !== model.index)
                         Authentificator.requestTiketsData(model.id)
                     view.currentIndex = model.index
-                    console.log(view.currentIndex)
-
                 }
             }
         }
     }
 
-    ListView {
+    ListView
+    {
         id: view
         anchors.fill: parent
 
@@ -64,15 +45,12 @@ Panel
         highlightMoveDuration: 0
         highlight: Rectangle
         {
-
             anchors { left:parent.left; right: parent.right }
-            height: 60
-            color: "#2b5278"
+            color: ComponentsConstants.Constants.projectSelectedlColor
         }
 
         model: projectsModel
         delegate: projectsDelegate
-
     }
 }
 

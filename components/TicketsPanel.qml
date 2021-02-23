@@ -6,45 +6,39 @@ import QtQuick.Controls.Material 2.3
 import "../imports" as ComponentsConstants
 
 import com.dgb.authentificator 1.0
+import com.dgb.ticketModel 1.0
 
 Panel
 {
     color: ComponentsConstants.Constants.ticketsPanelColor
-    ListModel
+    TicketModel
     {
         id: ticketsModel
     }
 
-    Connections {
+    Connections
+    {
         target: Authentificator
         function onTicketsDataRecieveSuccess() {
-            loadTickets(Authentificator.getTicketsData())
-        }
-    }
-    function loadTickets(data)
-    {
-        ticketsModel.clear()
-        var result = JSON.parse(data)
-        for (var i in result["tickets"]) {
-            ticketsModel.append({
-                                     "name" : result["tickets"][i].name,
-                                     "description" : result["tickets"][i].description,
-                                     "priority" : result["tickets"][i].priority,
-                                     "id": result["tickets"][i].id
-                                 });
+            console.log("Tickets data recieved")
         }
     }
 
-    Component {
+
+    Component
+    {
         id: ticketsDelegate
-        Ticket{}
+        Ticket {}
     }
-    ListView {
+
+    ListView
+    {
         id:view
 
+        spacing: 15
         anchors.fill: parent
-        interactive: false
 
+        clip: true
         model: ticketsModel
         delegate: ticketsDelegate
     }

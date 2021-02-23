@@ -3,6 +3,10 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkReply>
+#include <QJsonArray>
+#include <QJsonValue>
+
+Authentificator* Authentificator::instance = nullptr;
 
 Authentificator::Authentificator(QObject *parent) : QObject(parent),
     manager{ new QNetworkAccessManager(this) },
@@ -10,14 +14,34 @@ Authentificator::Authentificator(QObject *parent) : QObject(parent),
 {
 }
 
+Authentificator::~Authentificator()
+{
+    delete manager;
+    delete instance;
+}
+
+QObject* Authentificator::autentificationSingletonProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+
+    return getInstance();
+}
+
+Authentificator *Authentificator::getInstance()
+{
+    if(instance == nullptr)
+        instance = new Authentificator();
+    return instance;
+}
+
 void Authentificator::requestProjectsData()
 {
-    const QUrl url(QStringLiteral
-                   ("https://51.15.247.46:80/852983733:AAHMihiJcpmZBxyAuVkCdFs-NAdyQJgbtZQ/project/projects/"));
+    const QUrl url(dataRequestLink);
     QNetworkRequest request(url);
 
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader("authorization", token.toUtf8());
+    request.setRawHeader(rawHeaderKey.toUtf8(), token.toUtf8());
 
     QNetworkReply *reply = manager->get(request);
 
@@ -28,7 +52,20 @@ void Authentificator::requestProjectsData()
 
     QObject::connect(reply, &QNetworkReply::finished, [=]() mutable {
         if(reply->error() == QNetworkReply::NoError) {
-            projectsData = QString::fromUtf8(reply->readAll());
+            QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
+            QJsonObject jsonObject = jsonResponse.object();
+
+            QJsonArray jsonArray = jsonObject["projects"].toArray();
+
+            if(!projects.isEmpty())
+                projects.clear();
+
+            //Parsing JSON to QList<Project>
+            foreach (const QJsonValue & value, jsonArray) {
+                QJsonObject obj = value.toObject();
+                Project project(obj["name"].toString(), obj["icon"].toString(), obj["id"].toInt());
+                projects.append(project);
+            }
             emit projectsDataRecieveSuccess();
         }
         else {
@@ -41,12 +78,10 @@ void Authentificator::requestProjectsData()
 
 void Authentificator::requestTiketsData(int id)
 {
-    const QUrl url(
-                   ("https://51.15.247.46:80/852983733:AAHMihiJcpmZBxyAuVkCdFs-NAdyQJgbtZQ/project/tickets/" + QString::number(id)+ "/"));
+    const QUrl url((ticketRequestLink + QString::number(id) + "/"));
     QNetworkRequest request(url);
-
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader("authorization", token.toUtf8());
+    request.setRawHeader(rawHeaderKey.toUtf8(), token.toUtf8());
 
     QNetworkReply *reply = manager->get(request);
 
@@ -57,8 +92,21 @@ void Authentificator::requestTiketsData(int id)
 
     QObject::connect(reply, &QNetworkReply::finished, [=]() mutable {
         if(reply->error() == QNetworkReply::NoError) {
-            ticketsData = QString::fromUtf8(reply->readAll());
-            qDebug() << ticketsData;
+            QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
+            QJsonObject jsonObject = jsonResponse.object();
+            QJsonArray jsonArray = jsonObject["tickets"].toArray();
+
+            if(!tickets.isEmpty())
+                tickets.clear();
+
+            //Parsing JSON to QList<Ticket>
+            foreach (const QJsonValue & value, jsonArray) {
+                QJsonObject obj = value.toObject();
+                Ticket ticket(obj["name"].toString(), obj["description"].toString(), obj["priority"].toInt(), obj["id"].toInt());
+                tickets.append(ticket);
+
+            }
+
             emit ticketsDataRecieveSuccess();
         }
         else {
@@ -69,20 +117,21 @@ void Authentificator::requestTiketsData(int id)
     });
 }
 
-QString Authentificator::getProjectsData()
+
+QList<Project> Authentificator::getProjectsList()
 {
-    return projectsData;
+    return projects;
 }
 
-QString Authentificator::getTicketsData()
+QList<Ticket> Authentificator::getTicketsList()
 {
-    return ticketsData;
+    return tickets;
 }
 
 void Authentificator::getToken(QString login, QString password)
 {
-    const QUrl url(
-                QStringLiteral("https://51.15.247.46:80/852983733:AAHMihiJcpmZBxyAuVkCdFs-NAdyQJgbtZQ/project/login/"));
+    const QUrl url(tokenRequestLink);
+
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 

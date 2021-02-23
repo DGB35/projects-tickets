@@ -7,6 +7,7 @@ TextField
 {
     leftPadding: 10
     topPadding: 6
+    selectByMouse: true
 
     background: Rectangle
     {

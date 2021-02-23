@@ -16,8 +16,10 @@ QtObject
     readonly property color loginButtonColor: "#2a609e"
     readonly property color loginButtonPressedColor: "#00376f"
 
-    readonly property color ticketsPanelColor:"#0e1621"
-    readonly property color projectsPanelColor:"#17212b"
-    readonly property color textColor:"#f5f5f5"
+    readonly property color ticketsPanelColor: "#0e1621"
+    readonly property color projectsPanelColor: "#17212b"
+    readonly property color textColor: "#f5f5f5"
+    readonly property color projectSelectedlColor:"#2b5278"
 
+    readonly property real  headerHeigth: 0.03
 }

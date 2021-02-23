@@ -37,6 +37,8 @@ Rectangle
             Layout.preferredHeight: ComponentsConstants.Constants.elementsHeight
 
             placeholderText: "<i>Login</i>"
+
+            onAccepted: passwordField.focus = true
         }
 
         Components.InputText
@@ -50,18 +52,30 @@ Rectangle
             echoMode: TextInput.Password
             placeholderText: "<i>Password</i>"
 
+            onAccepted: loginButton.focus = true
         }
 
         Components.LoginButton
         {
+            id: loginButton
+
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: ComponentsConstants.Constants.elementsWidth + 2
             Layout.preferredHeight: ComponentsConstants.Constants.elementsHeight
 
-            onClicked: {
+            function activate()
+            {
+                console.log("Token request sended")
                 Authentificator.getToken(loginField.text, passwordField.text)
             }
-            Connections {
+
+            Keys.onReturnPressed: loginButton.activate()
+            Keys.onEnterPressed: loginButton.activate()
+
+            onClicked: loginButton.activate()
+
+            Connections
+            {
                 target: Authentificator
                 function onTokenRecieveSuccess() {
                     centralPanel.loginCompleted()

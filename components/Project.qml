@@ -5,34 +5,38 @@ import "../imports" as ComponentsConstants
 
 Rectangle
 {
-    id:bg
+    id: bg
+
     width: parent.width
     height: 60
     color: "transparent"
 
-    property int id: id
-
-    Row{
+    Row
+    {
         anchors.fill: parent
         spacing: 10
-        Image {
+
+        Image
+        {
             horizontalAlignment: parent.horizontalCenter
             id: image
             source: icon
             width: 50
             height: 50
         }
+
         Column
         {
-
-            TextComponent {
+            TextComponent
+            {
                 id: title
                 text: name
                 font.pixelSize: 13
                 font.bold: true
             }
 
-            TextComponent {
+            TextComponent
+            {
                 id: description
                 text: name
                 font.pixelSize: 11

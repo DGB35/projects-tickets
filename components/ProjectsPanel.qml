@@ -10,6 +10,8 @@ import com.dgb.projectModel 1.0
 
 Panel
 {
+    id: panel
+
     ProjectModel
     {
         id: projectsModel
@@ -20,9 +22,10 @@ Panel
         id: projectsDelegate
         Project
         {
+            id: project
             MouseArea
             {
-                id: area
+                id: projectMouseArea
                 focus: true
                 anchors.fill: parent
                 onClicked: {
@@ -52,6 +55,25 @@ Panel
         model: projectsModel
         delegate: projectsDelegate
     }
+
+    states:[
+        State {
+            name: "NormalWidth"
+            when: panel.width >=250
+            PropertyChanges {
+                target: title
+                text: "1"
+            }
+        },
+        State {
+            name: "MinimalWidth"
+            when: panel.width < 250
+            PropertyChanges {
+                target: title
+                text: "2"
+            }
+        }
+        ]
 }
 
 

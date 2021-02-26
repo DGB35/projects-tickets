@@ -20,7 +20,7 @@ public:
     static QObject *autentificationSingletonProvider(QQmlEngine*, QJSEngine*);
     static Authentificator* getInstance();
 
-    Q_INVOKABLE void getToken(QString login, QString password);
+    Q_INVOKABLE void requestToken(QString login, QString password);
 
     Q_INVOKABLE void requestTiketsData(int id);
                 void requestProjectsData();

@@ -21,5 +21,5 @@ QtObject
     readonly property color textColor: "#f5f5f5"
     readonly property color projectSelectedlColor:"#2b5278"
 
-    readonly property real  headerHeigth: 0.03
+    readonly property real  headerHeigth: 0.05
 }

@@ -66,7 +66,7 @@ Rectangle
             function activate()
             {
                 console.log("Token request sended")
-                Authentificator.getToken(loginField.text, passwordField.text)
+                Authentificator.requestToken(loginField.text, passwordField.text)
             }
 
             Keys.onReturnPressed: loginButton.activate()
@@ -101,7 +101,7 @@ Rectangle
                     Qt.openUrlExternally("https://google.com")
                     forgotPassword.color = ComponentsConstants.Constants.forgotPasswordPressedBg
                 }
-                onCanceled: forgotPassword.color = ComponentsConstants.Constants.forgotPasswordBgr
+                onCanceled: forgotPassword.color = ComponentsConstants.Constants.forgotPasswordBg
             }
         }
 

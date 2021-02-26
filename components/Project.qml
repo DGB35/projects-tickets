@@ -5,7 +5,7 @@ import "../imports" as ComponentsConstants
 
 Rectangle
 {
-    id: bg
+    id: project
 
     width: parent.width
     height: 60
@@ -18,7 +18,7 @@ Rectangle
 
         Image
         {
-            horizontalAlignment: parent.horizontalCenter
+            horizontalAlignment: project.horizontalCenter
             id: image
             source: icon
             width: 50
@@ -33,6 +33,7 @@ Rectangle
                 text: name
                 font.pixelSize: 13
                 font.bold: true
+                visible: textVisible
             }
 
             TextComponent
@@ -40,6 +41,7 @@ Rectangle
                 id: description
                 text: name
                 font.pixelSize: 11
+                visible: textVisible
             }
         }
 

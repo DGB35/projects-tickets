@@ -6,7 +6,7 @@
 class Project
 {
 public:
-    Project(QString name,QString icon, int id);
+    Project(QString name, QString icon, int id);
 
     QString getName() const;
     QString getIcon() const;

@@ -128,7 +128,7 @@ QList<Ticket> Authentificator::getTicketsList()
     return tickets;
 }
 
-void Authentificator::getToken(QString login, QString password)
+void Authentificator::requestToken(QString login, QString password)
 {
     const QUrl url(tokenRequestLink);
 
@@ -149,7 +149,7 @@ void Authentificator::getToken(QString login, QString password)
            reply->ignoreSslErrors();
         });
 
-    QObject::connect(reply, &QNetworkReply::finished, [=]() mutable {
+    QObject::connect(reply, &QNetworkReply::finished, [=]() {
         if(reply->error() == QNetworkReply::NoError){
             auto json = QJsonDocument::fromJson(reply->readAll());
             token = json["token"].toString();

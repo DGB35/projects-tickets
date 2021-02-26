@@ -25,7 +25,7 @@ Rectangle
          {
             id: projectsPanel
             SplitView.preferredWidth: 300
-            SplitView.minimumWidth: 75
+            SplitView.minimumWidth: 250
             SplitView.maximumWidth: 400
             color: ComponentsConstants.Constants.projectsPanelColor
          }
@@ -33,7 +33,6 @@ Rectangle
          Components.TicketsPanel
          {
             id: ticketsPanel
-            SplitView.minimumWidth: 200
             color: ComponentsConstants.Constants.ticketsPanelColor
          }
 

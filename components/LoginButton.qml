@@ -1,5 +1,6 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.15
+import QtQuick.Window 2.15
+import QtQuick.Controls 2.5
 
 import "../imports" as ComponentsConstants
 
@@ -18,5 +19,6 @@ Button
         color: submit.down ? ComponentsConstants.Constants.loginButtonPressedColor : ComponentsConstants.Constants.loginButtonColor
         radius: 2
     }
+
     hoverEnabled: false
 }

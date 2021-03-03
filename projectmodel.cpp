@@ -3,7 +3,7 @@
 
 ProjectModel::ProjectModel(QObject *parent): QAbstractListModel(parent)
 {
-    QObject::connect(Authentificator::getInstance(), SIGNAL(projectsDataRecieveSuccess()), this, SLOT(appendItems()));
+    QObject::connect(&Authentificator::getInstance(), SIGNAL(projectsDataRecieveSuccess()), this, SLOT(appendItems()));
 }
 
 void ProjectModel::appendItems()
@@ -11,8 +11,8 @@ void ProjectModel::appendItems()
     beginResetModel();
     projects.clear();
 
-    for(int i = 0; i < Authentificator::getInstance()->getProjectsList().count(); ++i)
-        projects.append(Authentificator::getInstance()->getProjectsList()[i]);
+    for(const auto& i: Authentificator::getInstance().getProjectsList())
+        projects.append(i);
 
     endResetModel();
 

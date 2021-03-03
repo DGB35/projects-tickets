@@ -8,7 +8,7 @@ import "../imports" as ComponentsConstants
 import com.dgb.authentificator 1.0
 import com.dgb.projectModel 1.0
 
-Panel
+MenuPanel
 {
     id: panel
 
@@ -29,7 +29,7 @@ Panel
                 focus: true
                 anchors.fill: parent
                 onClicked: {
-                    if(view.currentIndex !== model.index)
+                    if (view.currentIndex !== model.index)
                         Authentificator.requestTiketsData(model.id)
                     view.currentIndex = model.index
                 }
@@ -49,7 +49,7 @@ Panel
         highlight: Rectangle
         {
             anchors { left:parent.left; right: parent.right }
-            color: ComponentsConstants.Constants.projectSelectedlColor
+            color: ComponentsConstants.Constants.elementSelectedColor
         }
 
         model: projectsModel
@@ -57,20 +57,23 @@ Panel
     }
 
     states:[
-        State {
+        State
+        {
             name: "NormalWidth"
-            when: panel.width >=250
-            PropertyChanges {
-                target: title
-                text: "1"
+            when: project.width >=250
+            PropertyChanges
+            {
+                target: project
+
             }
         },
-        State {
+        State
+        {
             name: "MinimalWidth"
-            when: panel.width < 250
+            when: project.width <= 100
             PropertyChanges {
-                target: title
-                text: "2"
+                target: project
+                textVisibility: false
             }
         }
         ]

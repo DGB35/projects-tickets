@@ -8,10 +8,10 @@ class Ticket
 public:
     Ticket(QString name, QString description, int priority, int id);
 
-    QString getName() const;
+    QString getName()        const;
     QString getDescription() const;
-    int getPriority() const noexcept;
-    int     getId() const noexcept;
+    int     getPriority()    const noexcept;
+    int     getId()          const noexcept;
 
 private:
     QString name;

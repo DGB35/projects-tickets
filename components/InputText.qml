@@ -11,7 +11,7 @@ TextField
 
     background: Rectangle
     {
-        color: ComponentsConstants.Constants.inputTextBg
+        color: ComponentsConstants.Constants.inputTextColor
         radius: 2
     }
 }

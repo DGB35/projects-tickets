@@ -10,7 +10,7 @@ public:
 
     QString getName() const;
     QString getIcon() const;
-    int     getId() const noexcept;
+    int     getId()   const noexcept;
 
 private:
     QString name;

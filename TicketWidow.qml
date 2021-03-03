@@ -7,39 +7,62 @@ import "components" as Components
 
 Rectangle
 {
+    id: ticketWidow
+    required property var ticket;
+
+    signal close;
+    color: ComponentsConstants.Constants.actionPanelColor
+
     Components.Header
     {
+       id: header
        anchors.top: parent.anchors.top
        height: parent.height * ComponentsConstants.Constants.headerHeigth
        width: parent.width
-       color: ComponentsConstants.Constants.projectsPanelColor
-    }
+       color: ComponentsConstants.Constants.menuPanelColor
+       title: "Ticket edit"
+       Rectangle
+       {
+           id: back
+           width: parent.height
+           height: parent.height
+           color: "transparent"
 
-    SplitView
+           MouseArea {
+               width: parent.width
+               height: parent.height
+               onClicked: close()
+           }
+
+           Image {
+               id: backImage
+               source: "images/left.png"
+               width: parent.width
+               height: parent.height
+           }
+       }
+
+    }
+    Components.CustomSplitView
     {
-         id: splitView
-         anchors.topMargin: parent.height * ComponentsConstants.Constants.headerHeigth
-         anchors.fill: parent
+        id: splitView
+        anchors.topMargin: header.height
+        anchors.fill: parent
 
-         Components.ProjectsPanel
-         {
-            id: projectsPanel
+        Components.TicketValuesPanel
+        {
             SplitView.preferredWidth: 300
-            SplitView.minimumWidth: 250
-            SplitView.maximumWidth: 400
-            color: ComponentsConstants.Constants.projectsPanelColor
-         }
+            SplitView.minimumWidth: 75
+            SplitView.maximumWidth: 350
+        }
 
-         Components.TicketsPanel
-         {
-            id: ticketsPanel
-            color: ComponentsConstants.Constants.ticketsPanelColor
-         }
+        Components.TicketEditPanel
+        {
+            id: ticketEditPanel
+            SplitView.minimumWidth: 200
+        }
 
-         handle: Rectangle {
-             implicitWidth: 4
-             implicitHeight: 4
-             color: ComponentsConstants.Constants.projectsPanelColor
-         }
     }
+
+
 }

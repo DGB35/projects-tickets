@@ -18,5 +18,13 @@
         <file>components/TextComponent.qml</file>
         <file>components/Header.qml</file>
         <file>TicketWidow.qml</file>
+        <file>components/LoginPanel.qml</file>
+        <file>images/left.png</file>
+        <file>components/CustomSplitView.qml</file>
+        <file>components/ActionPanel.qml</file>
+        <file>components/TicketEditPanel.qml</file>
+        <file>components/MenuPanel.qml</file>
+        <file>components/TicketValuesPanel.qml</file>
+        <file>components/TicketValue.qml</file>
     </qresource>
 </RCC>

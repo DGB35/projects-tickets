@@ -16,9 +16,6 @@ StackView
         id: loginComponent
         LoginWindow
         {
-            anchors.centerIn: parent
-            width: 182; height: 220
-
             onLoginCompleted: {
                 stackView.replace(mainComponent)
             }
@@ -34,5 +31,16 @@ StackView
         }
     }
 
+    Component
+    {
+        id: ticketComponent
+        TicketWidow
+        {
+            id: ticketWidow
+            onClose: {
+                stackView.pop(null)
+            }
+        }
+    }
 }
 

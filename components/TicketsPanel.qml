@@ -8,9 +8,8 @@ import "../imports" as ComponentsConstants
 import com.dgb.authentificator 1.0
 import com.dgb.ticketModel 1.0
 
-Panel
+ActionPanel
 {
-    color: ComponentsConstants.Constants.ticketsPanelColor
     TicketModel
     {
         id: ticketsModel
@@ -24,16 +23,15 @@ Panel
         }
     }
 
-
     Component
     {
         id: ticketsDelegate
-        Ticket {}
+        Ticket { }
     }
 
     ListView
     {
-        id:view
+        id: view
 
         spacing: 15
         anchors.fill: parent

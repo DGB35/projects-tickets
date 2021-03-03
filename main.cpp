@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    engine.addImportPath(":/imports");
 
     qmlRegisterSingletonType<Authentificator>("com.dgb.authentificator", 1, 0,
                                               "Authentificator", Authentificator::autentificationSingletonProvider);

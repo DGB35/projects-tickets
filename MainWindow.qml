@@ -9,16 +9,17 @@ Rectangle
 {
     Components.Header
     {
-       anchors.top: parent.anchors.top
-       height: parent.height * ComponentsConstants.Constants.headerHeigth
-       width: parent.width
-       color: ComponentsConstants.Constants.projectsPanelColor
+         id: header
+         anchors.top: parent.anchors.top
+         title: "All projects"
+         height: parent.height * ComponentsConstants.Constants.headerHeigth
+         width: parent.width
     }
 
-    SplitView
+    Components.CustomSplitView
     {
          id: splitView
-         anchors.topMargin: parent.height * ComponentsConstants.Constants.headerHeigth
+         anchors.topMargin: header.height
          anchors.fill: parent
 
          Components.ProjectsPanel
@@ -26,21 +27,14 @@ Rectangle
             id: projectsPanel
             SplitView.preferredWidth: 300
             SplitView.minimumWidth: 75
-            SplitView.maximumWidth: 400
-            color: ComponentsConstants.Constants.projectsPanelColor
+            SplitView.maximumWidth: 350
+
          }
 
          Components.TicketsPanel
          {
             id: ticketsPanel
             SplitView.minimumWidth: 200
-            color: ComponentsConstants.Constants.ticketsPanelColor
-         }
-
-         handle: Rectangle {
-             implicitWidth: 4
-             implicitHeight: 4
-             color: ComponentsConstants.Constants.projectsPanelColor
          }
     }
 }

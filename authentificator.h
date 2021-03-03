@@ -14,30 +14,32 @@
 class Authentificator : public QObject
 {
     Q_OBJECT
-
+    Q_DISABLE_COPY(Authentificator)
 public:
 
-    static QObject *autentificationSingletonProvider(QQmlEngine*, QJSEngine*);
-    static Authentificator* getInstance();
+    static QObject* autentificationSingletonProvider(QQmlEngine*, QJSEngine*);
+    static Authentificator& getInstance();
 
-    Q_INVOKABLE void requestToken(QString login, QString password);
+    Q_INVOKABLE void requestToken(const QString& login, const QString& password);
 
     Q_INVOKABLE void requestTiketsData(int id);
                 void requestProjectsData();
 
-                QList<Project> getProjectsList();
-                QList<Ticket> getTicketsList();
+                QList<Project> getProjectsList() const;
+                QList<Ticket> getTicketsList()   const;
 private:
     explicit Authentificator(QObject *parent = nullptr);
     virtual ~Authentificator();
 private:
-    QNetworkAccessManager *manager;
+    std::unique_ptr<QNetworkAccessManager> manager;
     QString token;
 
+    //TODO: Remove projects&tickets
     QList<Project> projects;
     QList<Ticket> tickets;
 
-    static Authentificator *instance;
+    void parseProjectsData(QNetworkReply* reply);
+    void parseTicketsData(QNetworkReply* reply);
 
 signals:
     void tokenRecieveSuccess();

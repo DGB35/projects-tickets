@@ -1,6 +1,7 @@
 import QtQuick 2.0
 
-import "../imports" as ComponentsConstants
+import "../../imports" as ComponentsConstants
+import "../../components"
 
 MenuPanel
 {

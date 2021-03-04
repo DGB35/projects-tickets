@@ -2,10 +2,11 @@ import QtQuick 2.9
 import QtQuick.Controls 2.0
 
 import "../imports" as ComponentsConstants
+import "controls" as Controls
 
 Rectangle
 {
-    color: ComponentsConstants.Constants.actionPanelColor
+    anchors.horizontalCenter: parent.horizontalCenter
 
     width: parent.width * 0.9
     height: ComponentsConstants.Constants.menuElementHeight
@@ -14,7 +15,8 @@ Rectangle
     border.width: 2
     radius: 10
 
-    anchors.horizontalCenter: parent.horizontalCenter
+    color: ComponentsConstants.Constants.actionPanelColor
+
     Column
     {
         anchors.fill: parent
@@ -24,20 +26,20 @@ Rectangle
         anchors.topMargin: 4
         clip: true
 
-        TextComponent
+        Controls.TextComponent
         {
             id: title
             text: name
             font.pixelSize: 14
             font.bold: true
         }
-        TextComponent
+        Controls.TextComponent
         {
             id: descr
             text: description
             font.pixelSize: 12
         }
-        TextComponent
+        Controls.TextComponent
         {
             id: prior
             text: priority

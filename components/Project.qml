@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.0
 
 import "../imports" as ComponentsConstants
+import "controls" as Controls
 
 Rectangle
 {
@@ -14,19 +15,21 @@ Rectangle
     Row
     {
         anchors.fill: parent
+        anchors.margins: 3
         spacing: 10
         Image
         {
             horizontalAlignment: project.horizontalCenter
             id: image
             source: icon
+            fillMode: Image.PreserveAspectFit
             width: parent.height * 0.8
             height: parent.height * 0.8
         }
 
         Column
         {
-            TextComponent
+            Controls.TextComponent
             {
                 id: title
                 text: name
@@ -34,7 +37,7 @@ Rectangle
                 font.bold: true
             }
 
-            TextComponent
+            Controls.TextComponent
             {
                 id: description
                 text: name

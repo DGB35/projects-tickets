@@ -3,28 +3,29 @@
         <file>imports/Constants.qml</file>
         <file>main.qml</file>
         <file>images/Q.png</file>
-        <file>components/InputText.qml</file>
-        <file>components/LoginButton.qml</file>
         <file>imports/qmldir</file>
         <file>components/Project.qml</file>
-        <file>components/Panel.qml</file>
         <file>LoginWindow.qml</file>
         <file>App.qml</file>
         <file>MainWindow.qml</file>
-        <file>components/ProjectsPanel.qml</file>
-        <file>components/TicketsPanel.qml</file>
         <file>ApplicationFlow.qml</file>
         <file>components/Ticket.qml</file>
-        <file>components/TextComponent.qml</file>
         <file>components/Header.qml</file>
         <file>TicketWidow.qml</file>
-        <file>components/LoginPanel.qml</file>
         <file>images/left.png</file>
-        <file>components/CustomSplitView.qml</file>
-        <file>components/ActionPanel.qml</file>
-        <file>components/TicketEditPanel.qml</file>
-        <file>components/MenuPanel.qml</file>
-        <file>components/TicketValuesPanel.qml</file>
         <file>components/TicketValue.qml</file>
+        <file>components/controls/CustomSplitView.qml</file>
+        <file>components/controls/InputText.qml</file>
+        <file>components/controls/LoginButton.qml</file>
+        <file>components/controls/TextComponent.qml</file>
+        <file>components/panels/ActionPanel.qml</file>
+        <file>components/panels/LoginPanel.qml</file>
+        <file>components/panels/MenuPanel.qml</file>
+        <file>components/panels/Panel.qml</file>
+        <file>components/panels/ProjectsPanel.qml</file>
+        <file>components/panels/TicketEditPanel.qml</file>
+        <file>components/panels/TicketsPanel.qml</file>
+        <file>components/panels/TicketValuesPanel.qml</file>
+        <file>images/spinner.png</file>
     </qresource>
 </RCC>

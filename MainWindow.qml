@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.15
 
 import "imports" as ComponentsConstants
 import "components" as Components
+import "components/panels" as Panels
+import "components/controls" as Controls
 
 Rectangle
 {
@@ -16,13 +18,13 @@ Rectangle
          width: parent.width
     }
 
-    Components.CustomSplitView
+    Controls.CustomSplitView
     {
          id: splitView
          anchors.topMargin: header.height
          anchors.fill: parent
 
-         Components.ProjectsPanel
+         Panels.ProjectsPanel
          {
             id: projectsPanel
             SplitView.preferredWidth: 300
@@ -31,7 +33,7 @@ Rectangle
 
          }
 
-         Components.TicketsPanel
+         Panels.TicketsPanel
          {
             id: ticketsPanel
             SplitView.minimumWidth: 200

@@ -16,7 +16,6 @@ class Authentificator : public QObject
     Q_OBJECT
     Q_DISABLE_COPY(Authentificator)
 public:
-
     static QObject* autentificationSingletonProvider(QQmlEngine*, QJSEngine*);
     static Authentificator& getInstance();
 

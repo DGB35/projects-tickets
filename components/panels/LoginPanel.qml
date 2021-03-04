@@ -2,7 +2,9 @@ import QtQuick 2.9
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 
-import "../imports" as ComponentsConstants
+import "../../imports" as ComponentsConstants
+import "../controls" as Controls
+
 import com.dgb.authentificator 1.0
 
 Rectangle
@@ -10,7 +12,7 @@ Rectangle
     id: loginPanel
     signal loginCompleted()
 
-    color: ComponentsConstants.Constants.menuColor
+    color: ComponentsConstants.Constants.loginWindowColor
 
     ColumnLayout
     {
@@ -21,13 +23,13 @@ Rectangle
             id: image
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 100
-            Layout.preferredHeight: 50
+            Layout.preferredWidth: 90
+            Layout.preferredHeight: 90
             fillMode: Image.PreserveAspectFit
             source: ComponentsConstants.Constants.qImagePath
         }
 
-        InputText
+        Controls.InputText
         {
             id: loginField
 
@@ -41,7 +43,7 @@ Rectangle
             onAccepted: passwordField.focus = true
         }
 
-        InputText
+        Controls.InputText
         {
             id: passwordField
 
@@ -56,7 +58,7 @@ Rectangle
             onAccepted: loginButton.focus = true
         }
 
-        LoginButton
+        Controls.LoginButton
         {
             id: loginButton
 
@@ -92,7 +94,7 @@ Rectangle
 
             Layout.alignment: Qt.AlignCenter
             text: "Forgot password?"
-            color: ComponentsConstants.Constants.inputTextColor
+            color: ComponentsConstants.Constants.inputTextHintColor
 
             MouseArea
             {

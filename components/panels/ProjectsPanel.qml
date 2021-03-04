@@ -3,7 +3,8 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.3
 
-import "../imports" as ComponentsConstants
+import "../../imports" as ComponentsConstants
+import "../../components"
 
 import com.dgb.authentificator 1.0
 import com.dgb.projectModel 1.0
@@ -30,7 +31,10 @@ MenuPanel
                 anchors.fill: parent
                 onClicked: {
                     if (view.currentIndex !== model.index)
+                    {
                         Authentificator.requestTiketsData(model.id)
+                        ticketsPanel.state = "Loading"
+                    }
                     view.currentIndex = model.index
                 }
             }
@@ -56,27 +60,7 @@ MenuPanel
         delegate: projectsDelegate
     }
 
-    states:[
-        State
-        {
-            name: "NormalWidth"
-            when: project.width >=250
-            PropertyChanges
-            {
-                target: project
 
-            }
-        },
-        State
-        {
-            name: "MinimalWidth"
-            when: project.width <= 100
-            PropertyChanges {
-                target: project
-                textVisibility: false
-            }
-        }
-        ]
 }
 
 

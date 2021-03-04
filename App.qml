@@ -9,7 +9,7 @@ Window
     visible: true
     width: 1240; height: 720
     title: qsTr("App")
-    color: ComponentsConstants.Constants.menuColor
+    color: ComponentsConstants.Constants.loginWindowColor
 
     minimumHeight: 400
     minimumWidth: 400

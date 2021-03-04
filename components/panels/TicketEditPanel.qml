@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 
-import "../imports" as ComponentsConstants
+import "../../imports" as ComponentsConstants
 
 ActionPanel
 {
@@ -17,8 +17,8 @@ ActionPanel
     Rectangle
     {
         anchors.centerIn: parent
-        width: parent.width * 0.9
-        height: parent.height * 0.9
+        width: parent.width * 0.95
+        height: parent.height * 0.95
         color: "transparent"
         border.color: ComponentsConstants.Constants.menuPanelColor
 
@@ -31,10 +31,10 @@ ActionPanel
                 id: edit
                 text: editValue
                 color: ComponentsConstants.Constants.textColor
-                font.pixelSize: 12
+                font.pixelSize: 16
 
-                width: parent.width * 0.9
-
+                width: parent.width * 0.95
+                height: parent.height * 0.95
                 selectByMouse: true
                 wrapMode: Text.Wrap
             }
@@ -61,7 +61,7 @@ ActionPanel
                     }
 
                     onClicked: {
-                        //TODO: Fix bug with these 2 functions
+                        //TODO: Fix bug with these 2 functions (after call user can't change menu)
 
                         //edit.text = edit.text.replace(/\n/g, " ")
                         //edit.text = edit.text.trim()

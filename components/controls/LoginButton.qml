@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.5
 
-import "../imports" as ComponentsConstants
+import "../../imports" as ComponentsConstants
 
 Button
 {
@@ -10,7 +10,7 @@ Button
     contentItem: Text {
         text: "Login"
         font.bold: true
-        color: "white"
+        color: ComponentsConstants.Constants.textColor
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }

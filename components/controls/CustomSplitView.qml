@@ -1,7 +1,7 @@
 import QtQuick 2.3
 import QtQuick.Controls 2.15
 
-import "../imports" as ComponentsConstants
+import "../../imports" as ComponentsConstants
 
 SplitView
 {

@@ -21,7 +21,6 @@ public:
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role)       const override;
-
 public:
     TicketModel(QObject *parent = nullptr);
 

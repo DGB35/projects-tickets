@@ -1,6 +1,7 @@
 import QtQuick 2.0
 
 import "../imports" as ComponentsConstants
+import "controls" as Controls
 
 Rectangle
 {
@@ -9,7 +10,7 @@ Rectangle
     required property string title;
     color: ComponentsConstants.Constants.headerColor
 
-    TextComponent
+    Controls.TextComponent
     {
         anchors.fill: parent
         id: name

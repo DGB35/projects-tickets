@@ -15,7 +15,6 @@ void ProjectModel::appendItems()
         projects.append(i);
 
     endResetModel();
-
 }
 
 int ProjectModel::rowCount(const QModelIndex &parent) const

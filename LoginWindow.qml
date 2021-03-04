@@ -4,10 +4,14 @@ import QtQuick.Window 2.15
 
 import "imports" as ComponentsConstants
 import "components" as Components
+import "components/panels" as Panels
 
-Components.LoginPanel
+Panels.LoginPanel
 {
-    width: 182; height: 220
-    anchors.centerIn: parent
+    width: 200; height: 220
+    x: parent.width / 2 - width / 2
+    y: parent.height / 2 - height / 2 - parent.height * 0.08
+
+    anchors.bottomMargin: parent.height * 0.1
 }
 

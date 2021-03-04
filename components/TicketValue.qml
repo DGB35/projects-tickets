@@ -2,6 +2,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.0
 
 import "../imports" as ComponentsConstants
+import "controls" as Controls
 
 Rectangle
 {
@@ -18,7 +19,7 @@ Rectangle
         spacing: 10
         Column
         {
-            TextComponent
+            Controls.TextComponent
             {
                 id: title
                 text: name

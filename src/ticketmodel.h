@@ -28,7 +28,7 @@ private:
     QList<Ticket> tickets;
 
 public slots:
-    void appendItems();
+    void appendItems(QList<Ticket>);
 };
 
 #endif // TICKETMODEL_H

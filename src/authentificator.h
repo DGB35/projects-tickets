@@ -23,19 +23,12 @@ public:
 
     Q_INVOKABLE void requestTiketsData(int id);
                 void requestProjectsData();
-
-                QList<Project> getProjectsList() const;
-                QList<Ticket> getTicketsList()   const;
 private:
     explicit Authentificator(QObject *parent = nullptr);
     virtual ~Authentificator();
 private:
     std::unique_ptr<QNetworkAccessManager> manager;
     QString token;
-
-    //TODO: Remove projects&tickets
-    QList<Project> projects;
-    QList<Ticket> tickets;
 
     void parseProjectsData(QNetworkReply* reply);
     void parseTicketsData(QNetworkReply* reply);
@@ -44,10 +37,10 @@ signals:
     void tokenRecieveSuccess();
     void tokenRecieveFailture();
 
-    void projectsDataRecieveSuccess();
+    void projectsDataRecieveSuccess(QList<Project>);
     void projectsDataRecieveFailture();
 
-    void ticketsDataRecieveSuccess();
+    void ticketsDataRecieveSuccess(QList<Ticket>);
     void ticketsDataRecieveFailture();
 };
 

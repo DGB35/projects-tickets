@@ -3,16 +3,17 @@
 
 TicketModel::TicketModel(QObject *parent): QAbstractListModel(parent)
 {
-    QObject::connect(&Authentificator::getInstance(), SIGNAL(ticketsDataRecieveSuccess()), this, SLOT(appendItems()));
+    QObject::connect(&Authentificator::getInstance(), &Authentificator::ticketsDataRecieveSuccess, this, &TicketModel::appendItems);
 }
 
-void TicketModel::appendItems()
+void TicketModel::appendItems(QList<Ticket> responseTickets)
 {
     beginResetModel();
 
-    tickets.clear();
-    for(const auto& i: Authentificator::getInstance().getTicketsList())
-        tickets.append(i);
+    if(!tickets.isEmpty())
+        tickets.clear();
+
+    tickets = std::move(responseTickets);
 
     endResetModel();
 }

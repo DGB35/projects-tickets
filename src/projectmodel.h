@@ -28,7 +28,7 @@ private:
     QList<Project> projects;
 
 public slots:
-    void appendItems();
+    void appendItems(QList<Project>);
 };
 
 #endif // PROJECTMODEL_H

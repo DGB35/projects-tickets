@@ -22,11 +22,9 @@ void Authentificator::parseProjectsData(QNetworkReply* reply)
     if(reply->error() == QNetworkReply::NoError) {
         QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
         QJsonObject jsonObject = jsonResponse.object();
-
         QJsonArray jsonArray = jsonObject["projects"].toArray();
 
-        if(!projects.isEmpty())
-            projects.clear();
+        QList<Project> projects;
 
         //Parsing JSON to QList<Project>
         for (const auto& value: jsonArray) {
@@ -34,7 +32,7 @@ void Authentificator::parseProjectsData(QNetworkReply* reply)
             Project project(obj["name"].toString(), obj["icon"].toString(), obj["id"].toInt());
             projects.append(project);
         }
-        emit projectsDataRecieveSuccess();
+        emit projectsDataRecieveSuccess(projects);
     }
     else {
         QString err = reply->errorString();
@@ -51,8 +49,7 @@ void Authentificator::parseTicketsData(QNetworkReply *reply)
         QJsonObject jsonObject = jsonResponse.object();
         QJsonArray jsonArray = jsonObject["tickets"].toArray();
 
-        if(!tickets.isEmpty())
-            tickets.clear();
+        QList<Ticket> tickets;
 
         //Parsing JSON to QList<Ticket>
         for (const auto& value: jsonArray) {
@@ -60,7 +57,7 @@ void Authentificator::parseTicketsData(QNetworkReply *reply)
             Ticket ticket(obj["name"].toString(), obj["description"].toString(), obj["priority"].toInt(), obj["id"].toInt());
             tickets.append(ticket);
         }
-        emit ticketsDataRecieveSuccess();
+        emit ticketsDataRecieveSuccess(tickets);
     }
     else {
         QString err = reply->errorString();
@@ -121,17 +118,6 @@ void Authentificator::requestTiketsData(int id)
     QObject::connect(reply, &QNetworkReply::finished, [this, reply]() {
        parseTicketsData(reply);
     });
-}
-
-
-QList<Project> Authentificator::getProjectsList() const
-{
-    return projects;
-}
-
-QList<Ticket> Authentificator::getTicketsList() const
-{
-    return tickets;
 }
 
 void Authentificator::requestToken(const QString& login, const QString& password)

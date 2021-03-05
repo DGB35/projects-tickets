@@ -3,16 +3,17 @@
 
 ProjectModel::ProjectModel(QObject *parent): QAbstractListModel(parent)
 {
-    QObject::connect(&Authentificator::getInstance(), SIGNAL(projectsDataRecieveSuccess()), this, SLOT(appendItems()));
+    QObject::connect(&Authentificator::getInstance(), &Authentificator::projectsDataRecieveSuccess, this, &ProjectModel::appendItems);
 }
 
-void ProjectModel::appendItems()
+void ProjectModel::appendItems(QList<Project> replyProjects)
 {
     beginResetModel();
-    projects.clear();
 
-    for(const auto& i: Authentificator::getInstance().getProjectsList())
-        projects.append(i);
+    if(!projects.isEmpty())
+        projects.clear();
+
+    projects = std::move(replyProjects);
 
     endResetModel();
 }
